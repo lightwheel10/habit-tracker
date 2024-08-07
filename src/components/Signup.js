@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import axios from 'axios';
 import { Link } from 'react-router-dom';
+import { Home } from 'lucide-react';
 
 const Signup = ({ setIsLoggedIn, setUserType }) => {
   const [username, setUsername] = useState('');
@@ -29,6 +30,12 @@ const Signup = ({ setIsLoggedIn, setUserType }) => {
 
   return (
     <div className="min-h-screen flex items-center justify-center bg-gray-50 py-12 px-4 sm:px-6 lg:px-8">
+      {/* <div className="flex justify-between items-center mb-8">
+        <Link to="/" className="text-indigo-600 hover:text-indigo-500">
+          <Home size={24} />
+        </Link>
+        <h1 className="text-2xl font-bold text-indigo-600">HabitTracker</h1>
+      </div> */}
       <div className="max-w-md w-full space-y-8">
         <h2 className="mt-6 text-center text-3xl font-extrabold text-gray-900">Create your account</h2>
         <form className="mt-8 space-y-6" onSubmit={handleSubmit}>

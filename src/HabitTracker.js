@@ -3,6 +3,7 @@ import Sidebar from './components/Sidebar';
 import MainContent from './components/MainContent';
 import RightPanel from './components/RightPanel';
 import LogoutConfirmationModal from './LogoutConfirmationModal';
+// import LandingPage from './components/LandingPage';
 import { 
   fetchHabits, 
   createHabit, 
@@ -221,7 +222,7 @@ const HabitTracker = () => {
       setHabits([]);
       setAreas([]);
       // Redirect to login page
-      window.location.href = '/login';
+      window.location.href = '/';
     } catch (error) {
       console.error('Error during logout:', error);
       setError('Failed to logout. Please try again.');

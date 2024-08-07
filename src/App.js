@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { BrowserRouter as Router, Route, Routes, Navigate } from 'react-router-dom';
+import LandingPage from './components/LandingPage';
 import HabitTracker from './HabitTracker';
 import PrefilledHabitTracker from './PrefilledHabitTracker';
 import WelcomePage from './WelcomePage';
@@ -35,6 +36,10 @@ function App() {
       <Routes>
         <Route 
           path="/" 
+          element={<LandingPage />} 
+        />
+        <Route 
+          path="/welcome" 
           element={
             userType === 'new' 
               ? <WelcomePage onGetStarted={handleGetStarted} onDemoClick={handleDemoClick} /> 

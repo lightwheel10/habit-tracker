@@ -6,6 +6,7 @@ import CalendarComponent from './Calendar';
 import EmptyState from './EmptyState';
 import DebugInfo from './DebugInfo';
 import { fetchHabits, createHabit, updateHabit, updateHabitLog, deleteHabit } from '../services/api';
+import '../styles/dashboard-modern.css';
 
 // Helper functions
 const isHabitCompletedToday = (habit) => {
@@ -89,29 +90,29 @@ const MainContent = ({
   }, [habits, selectedSection]);
 
   const filteredHabits = getHabitsForCurrentView().filter(habit => {
-    // Create new Date objects and reset to start of day
-    const habitStartDate = new Date(habit.startDate);
-    habitStartDate.setHours(0, 0, 0, 0);
-    
-    const selectedDateCopy = new Date(selectedDate);
-    selectedDateCopy.setHours(0, 0, 0, 0);
+  // Create new Date objects and reset to start of day
+  const habitStartDate = new Date(habit.startDate);
+  habitStartDate.setHours(0, 0, 0, 0);
   
-    // If endDate exists, set it to end of the day
-    let habitEndDate = null;
-    if (habit.endDate) {
-      habitEndDate = new Date(habit.endDate);
-      habitEndDate.setHours(23, 59, 59, 999);
-    }
-  
-    // Check if habit name matches search query
-    const nameMatches = habit.name.toLowerCase().includes(searchQuery.toLowerCase());
-  
-    // Check if selected date is within habit's date range
-    const isWithinDateRange = habitStartDate <= selectedDateCopy && 
-                              (!habitEndDate || habitEndDate >= selectedDateCopy);
-  
-    return nameMatches && isWithinDateRange;
-  });
+  const selectedDateCopy = new Date(selectedDate);
+  selectedDateCopy.setHours(0, 0, 0, 0);
+
+  // If endDate exists, set it to end of the day
+  let habitEndDate = null;
+  if (habit.endDate) {
+    habitEndDate = new Date(habit.endDate);
+    habitEndDate.setHours(23, 59, 59, 999);
+  }
+
+  // Check if habit name matches search query
+  const nameMatches = habit.name.toLowerCase().includes(searchQuery.toLowerCase());
+
+  // Check if selected date is within habit's date range
+  const isWithinDateRange = habitStartDate <= selectedDateCopy && 
+                            (!habitEndDate || habitEndDate >= selectedDateCopy);
+
+  return nameMatches && isWithinDateRange;
+});
 
   const successHabits = filteredHabits.filter(habit => getHabitStatusForDate(habit, selectedDate) === 'completed');
   const skippedHabits = filteredHabits.filter(habit => getHabitStatusForDate(habit, selectedDate) === 'skipped');
@@ -359,9 +360,9 @@ const MainContent = ({
                       </div>
                   </div>
                   <span className="text-sm text-gray-400 mt-1">{habit.timeOfDay[0]}</span>
-                  <span className="text-sm mt-1">
+                  {/* <span className="text-sm mt-1">
                     Status: {getHabitStatusForDate(habit, selectedDate).charAt(0).toUpperCase() + getHabitStatusForDate(habit, selectedDate).slice(1)}
-                  </span>
+                  </span> */}
                 </div>
               ))}
             </div>
