@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
-import { ArrowRight, Check, Menu, X, Moon, Sun, Zap, Target, BarChart, Bell, Mail, Phone, MapPin, Github, Twitter, Linkedin } from 'lucide-react';
+import { ArrowRight, Menu, X, Moon, Sun, Zap, Target, BarChart, Bell, Mail, Phone, MapPin, Github, Twitter, Linkedin } from 'lucide-react';
 
 const LandingPage = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -171,13 +171,13 @@ const LandingPage = () => {
           <div className="border-t border-gray-700 pt-8 flex flex-col md:flex-row justify-between items-center">
             <p className="text-gray-400">&copy; 2023 HabitTracker. All rights reserved.</p>
             <div className="flex space-x-4 mt-4 md:mt-0">
-              <a href="#" className="text-gray-400 hover:text-purple-400 transition-colors">
+              <a href="www.google.com" className="text-gray-400 hover:text-purple-400 transition-colors">
                 <Github className="w-6 h-6" />
               </a>
-              <a href="#" className="text-gray-400 hover:text-purple-400 transition-colors">
+              <a href="www.google.com" className="text-gray-400 hover:text-purple-400 transition-colors">
                 <Twitter className="w-6 h-6" />
               </a>
-              <a href="#" className="text-gray-400 hover:text-purple-400 transition-colors">
+              <a href="www.google.com" className="text-gray-400 hover:text-purple-400 transition-colors">
                 <Linkedin className="w-6 h-6" />
               </a>
             </div>
