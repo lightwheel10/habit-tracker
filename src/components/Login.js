@@ -12,7 +12,7 @@ const Login = ({ setIsLoggedIn, setUserType }) => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const response = await axios.post('http://localhost:5000/api/auth/login', { email, password },
+      const response = await axios.post('https://us-central1-habit-tracker-7df86.cloudfunctions.net/api', { email, password },
         {
         headers: { 'Content-Type': 'application/json' },
         withCredentials: true
