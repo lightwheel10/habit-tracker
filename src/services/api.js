@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-const API_URL = 'http://localhost:5000/api';
+const API_URL = 'https://us-central1-habit-tracker-7df86.cloudfunctions.net/api;
 
 // Axios instance
 const api = axios.create({
