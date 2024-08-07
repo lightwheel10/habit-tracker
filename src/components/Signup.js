@@ -17,7 +17,7 @@ const Signup = ({ setIsLoggedIn, setUserType }) => {
       return;
     }
     try {
-      const response = await axios.post('http://localhost:5000/api/auth/register', { username, email, password });
+      const response = await axios.post('https://us-central1-habit-tracker-7df86.cloudfunctions.net/api/auth/register', { username, email, password });
       localStorage.setItem('token', response.data.accessToken);
       localStorage.setItem('refreshToken', response.data.refreshToken); // Ensure refresh token is stored
       setIsLoggedIn(true);
