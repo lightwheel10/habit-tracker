@@ -8,7 +8,7 @@ const PORT = process.env.PORT || 5000;
 
 // Middleware
 app.use(cors({
-  origin: 'https://66b3e0d7e753ef0008f0cd9d--trackhabitseasy.netlify.app/', // Replace with your frontend URL
+  origin: 'https://66b3e0d7e753ef0008f0cd9d--trackhabitseasy.netlify.app', // Replace with your frontend URL
   credentials: true
 }));
 app.use(express.json());
