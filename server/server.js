@@ -9,7 +9,7 @@ const PORT = process.env.PORT || 5000;
 // Middleware
 const allowedOrigins = [
   'https://66b3e0d7e753ef0008f0cd9d--trackhabitseasy.netlify.app', // Replace with your frontend URL
-  'https://main--trackhabitseasy.netlify.app',                    // Add other possible URLs
+  'https://trackhabitseasy.netlify.app',                    // Add other possible URLs
   'https://<your-production-url>.netlify.app'                      // Add your production URL
 ];
 
