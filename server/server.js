@@ -7,10 +7,24 @@ const app = express();
 const PORT = process.env.PORT || 5000;
 
 // Middleware
+const allowedOrigins = [
+  'https://66b3e0d7e753ef0008f0cd9d--trackhabitseasy.netlify.app', // Replace with your frontend URL
+  'https://main--trackhabitseasy.netlify.app',                    // Add other possible URLs
+  'https://<your-production-url>.netlify.app'                      // Add your production URL
+];
+
 app.use(cors({
-  origin: 'https://66b3e0d7e753ef0008f0cd9d--trackhabitseasy.netlify.app', // Replace with your frontend URL
+  origin: function (origin, callback) {
+    if (!origin) return callback(null, true);
+    if (allowedOrigins.indexOf(origin) === -1) {
+      const msg = 'The CORS policy for this site does not allow access from the specified origin.';
+      return callback(new Error(msg), false);
+    }
+    return callback(null, true);
+  },
   credentials: true
 }));
+
 app.use(express.json());
 
 // MongoDB connection
