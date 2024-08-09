@@ -1,0 +1,66 @@
+/Habit-Tracker-Project
+│
+├── server
+│   ├── server.js
+│   ├── routes
+│   │   ├── auth.js
+│   │   ├── habits.js
+│   │   └── areas.js
+│   ├── models
+│   │   ├── Users.js
+│   │   ├── Habit.js
+│   │   └── Area.js
+│   ├── middleware
+│   │   └── auth.js
+│   ├── package.json
+│   └── package-lock.json
+│
+├── src
+│   ├── components
+│   │   ├── AddHabitModal.js
+│   │   ├── Calendar.js
+│   │   ├── DebugInfo.js
+│   │   ├── EditHabitModal.js
+│   │   ├── EmptyState.js
+│   │   ├── HabitCalendar.js
+│   │   ├── HabitList.js
+│   │   ├── LandingPage.js
+│   │   ├── Login.js
+│   │   ├── MainContent.js
+│   │   ├── RightPanel.js
+│   │   ├── Sidebar.js
+│   │   ├── Signup.js
+│   │   ├── LogoutConfirmationModal.js
+│   │   ├── HabitTracker.js
+│   │   ├── PrefilledHabitTracker.js
+│   │   └── WelcomePage.js
+│   │
+│   ├── services
+│   │   ├── api.js
+│   │
+│   ├── utils
+│   │   └── habitUtils.js
+│   │
+│   ├── App.css
+│   ├── App.js
+│   ├── App.test.js
+│   ├── index.css
+│   ├── index.js
+│   ├── logo.svg
+│   ├── reportWebVitals.js
+│   └── setupTests.js
+│
+├── public
+│   ├── index.html
+│   └── favicon.ico
+│
+├── .env.production
+├── .firebaserc
+├── .gitattributes
+├── .gitignore
+├── .eslintrc.js
+├── firebase.json
+├── postcss.config.js
+├── tailwind.config.js
+├── package.json
+└── package-lock.json
