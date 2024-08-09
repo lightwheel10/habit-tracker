@@ -12,6 +12,10 @@
 │   │   └── Area.js
 │   ├── middleware
 │   │   └── auth.js
+│   ├── functions
+│   │   ├── index.js
+│   │   ├── package.json
+│   │   └── package-lock.json
 │   ├── package.json
 │   └── package-lock.json
 │
