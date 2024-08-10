@@ -5,7 +5,6 @@ import DatePicker from 'react-datepicker';
 import 'react-datepicker/dist/react-datepicker.css';
 
 const AddHabitModal = ({ areas, onAddHabit, onClose }) => {
-  // State for the new habit data
   const [newHabit, setNewHabit] = useState({
     name: '',
     emoji: '',
@@ -31,25 +30,20 @@ const AddHabitModal = ({ areas, onAddHabit, onClose }) => {
     endDate: null,
     areaId: ''
   });
-  // State for showing/hiding the emoji picker
   const [showEmojiPicker, setShowEmojiPicker] = useState(false);
 
-  // Handle emoji selection from the emoji picker
   const handleEmojiClick = (emojiObject) => {
     setNewHabit({ ...newHabit, emoji: emojiObject.emoji });
     setShowEmojiPicker(false);
   };
 
-  // Handle form submission for adding a new habit
   const handleSubmit = (e) => {
     e.preventDefault();
-    // Check if an area is selected
     if (!newHabit.areaId) {
       alert("Please select an area for the habit.");
       return;
     }
     try {
-      // Call the onAddHabit function with the new habit data
       onAddHabit(newHabit);
     } catch (error) {
       console.error('Error adding new habit:', error);
@@ -57,33 +51,26 @@ const AddHabitModal = ({ areas, onAddHabit, onClose }) => {
     }
   };
 
-  // Handle start date change
   const handleStartDateChange = (date) => {
     setNewHabit({ ...newHabit, startDate: date });
   };
 
-  // Handle end date change
   const handleEndDateChange = (date) => {
     setNewHabit({ ...newHabit, endDate: date });
   };
 
   return (
-    // Modal container
     <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
-      // Modal content
       <div className="bg-gray-900 p-6 rounded-lg w-120 max-h-[90vh] overflow-y-auto">
-        // Modal header
         <div className="flex justify-between items-center mb-4">
           <h3 className="text-xl font-bold text-white">Add New Habit</h3>
           <button onClick={onClose} className="text-gray-400 hover:text-white">
             <X size={24} />
           </button>
         </div>
-        // Habit form
         <form onSubmit={handleSubmit}>
-          {/* Habit Name and Emoji */}
           <div className="mb-4">
-            <label className="block text-sm font-medium text-gray-400 mb-1">NAME</label>
+            <label htmlFor="habitName" className="block text-sm font-medium text-gray-400 mb-1">NAME</label>
             <div className="flex items-center">
               <button
                 type="button"
@@ -93,6 +80,7 @@ const AddHabitModal = ({ areas, onAddHabit, onClose }) => {
                 {newHabit.emoji || <Smile size={20} />}
               </button>
               <input
+                id="habitName"
                 type="text"
                 className="bg-gray-800 text-white px-3 py-2 rounded-r flex-grow"
                 value={newHabit.name}
@@ -107,11 +95,11 @@ const AddHabitModal = ({ areas, onAddHabit, onClose }) => {
             )}
           </div>
 
-          {/* Goal */}
           <div className="mb-4">
-            <label className="block text-sm font-medium text-gray-400 mb-1">GOAL</label>
+            <label htmlFor="goalValue" className="block text-sm font-medium text-gray-400 mb-1">GOAL</label>
             <div className="flex space-x-2">
               <input
+                id="goalValue"
                 type="number"
                 className="bg-gray-800 text-white px-3 py-2 rounded w-16"
                 value={newHabit.goal.value}
@@ -120,6 +108,7 @@ const AddHabitModal = ({ areas, onAddHabit, onClose }) => {
                 required
               />
               <select
+                id="goalUnit"
                 className="bg-gray-800 text-white px-3 py-2 rounded flex-grow"
                 value={newHabit.goal.unit}
                 onChange={(e) => setNewHabit({ ...newHabit, goal: { ...newHabit.goal, unit: e.target.value } })}
@@ -129,6 +118,7 @@ const AddHabitModal = ({ areas, onAddHabit, onClose }) => {
                 <option value="hours">Hours</option>
               </select>
               <select
+                id="goalTimeframe"
                 className="bg-gray-800 text-white px-3 py-2 rounded flex-grow"
                 value={newHabit.goal.timeframe}
                 onChange={(e) => setNewHabit({ ...newHabit, goal: { ...newHabit.goal, timeframe: e.target.value } })}
@@ -141,10 +131,10 @@ const AddHabitModal = ({ areas, onAddHabit, onClose }) => {
             </div>
           </div>
 
-          {/* Repeat Pattern */}
           <div className="mb-4">
-            <label className="block text-sm font-medium text-gray-400 mb-1">REPEAT PATTERN</label>
+            <label htmlFor="repeatPattern" className="block text-sm font-medium text-gray-400 mb-1">REPEAT PATTERN</label>
             <select
+              id="repeatPattern"
               className="bg-gray-800 text-white px-3 py-2 rounded w-full"
               value={newHabit.repeatPattern.type}
               onChange={(e) => setNewHabit({ ...newHabit, repeatPattern: { ...newHabit.repeatPattern, type: e.target.value } })}
@@ -156,11 +146,11 @@ const AddHabitModal = ({ areas, onAddHabit, onClose }) => {
             </select>
           </div>
 
-          {/* Completion Target */}
           <div className="mb-4">
-            <label className="block text-sm font-medium text-gray-400 mb-1">COMPLETION TARGET</label>
+            <label htmlFor="completionTarget" className="block text-sm font-medium text-gray-400 mb-1">COMPLETION TARGET</label>
             <div className="flex space-x-2">
               <select
+                id="completionTarget"
                 className="bg-gray-800 text-white px-3 py-2 rounded flex-grow"
                 value={newHabit.completionTarget.type}
                 onChange={(e) => setNewHabit({ ...newHabit, completionTarget: { ...newHabit.completionTarget, type: e.target.value } })}
@@ -172,6 +162,7 @@ const AddHabitModal = ({ areas, onAddHabit, onClose }) => {
               {newHabit.completionTarget.type !== 'every time' && (
                 <>
                   <input
+                    id="completionTargetValue"
                     type="number"
                     className="bg-gray-800 text-white px-3 py-2 rounded w-16"
                     value={newHabit.completionTarget.value}
@@ -179,7 +170,8 @@ const AddHabitModal = ({ areas, onAddHabit, onClose }) => {
                     min="1"
                     required
                   />
-                                    <select
+                  <select
+                    id="completionTargetTimeframe"
                     className="bg-gray-800 text-white px-3 py-2 rounded flex-grow"
                     value={newHabit.completionTarget.timeframe}
                     onChange={(e) => setNewHabit({ ...newHabit, completionTarget: { ...newHabit.completionTarget, timeframe: e.target.value } })}
@@ -193,10 +185,10 @@ const AddHabitModal = ({ areas, onAddHabit, onClose }) => {
             </div>
           </div>
 
-          {/* Time of Day */}
           <div className="mb-4">
-            <label className="block text-sm font-medium text-gray-400 mb-1">TIME OF DAY</label>
+            <label htmlFor="timeOfDay" className="block text-sm font-medium text-gray-400 mb-1">TIME OF DAY</label>
             <select
+              id="timeOfDay"
               className="bg-gray-800 text-white px-3 py-2 rounded w-full"
               value={newHabit.timeOfDay[0]}
               onChange={(e) => setNewHabit({ ...newHabit, timeOfDay: [e.target.value] })}
@@ -209,6 +201,7 @@ const AddHabitModal = ({ areas, onAddHabit, onClose }) => {
             </select>
             {newHabit.timeOfDay[0] === 'specific time' && (
               <input
+                id="specificTime"
                 type="time"
                 className="bg-gray-800 text-white px-3 py-2 rounded w-full mt-2"
                 value={newHabit.specificTime || ''}
@@ -218,11 +211,11 @@ const AddHabitModal = ({ areas, onAddHabit, onClose }) => {
             )}
           </div>
 
-          {/* Start Date */}
           <div className="mb-4">
-            <label className="block text-sm font-medium text-gray-400 mb-1">START DATE</label>
+            <label htmlFor="startDate" className="block text-sm font-medium text-gray-400 mb-1">START DATE</label>
             <div className="relative">
               <DatePicker
+                id="startDate"
                 selected={newHabit.startDate}
                 onChange={handleStartDateChange}
                 className="bg-gray-800 text-white px-3 py-2 rounded w-full"
@@ -232,11 +225,11 @@ const AddHabitModal = ({ areas, onAddHabit, onClose }) => {
             </div>
           </div>
 
-                    {/* End Date */}
-                    <div className="mb-4">
-            <label className="block text-sm font-medium text-gray-400 mb-1">END DATE (Optional)</label>
+          <div className="mb-4">
+            <label htmlFor="endDate" className="block text-sm font-medium text-gray-400 mb-1">END DATE (Optional)</label>
             <div className="relative">
               <DatePicker
+                id="endDate"
                 selected={newHabit.endDate}
                 onChange={handleEndDateChange}
                 className="bg-gray-800 text-white px-3 py-2 rounded w-full"
@@ -248,10 +241,10 @@ const AddHabitModal = ({ areas, onAddHabit, onClose }) => {
             </div>
           </div>
 
-          {/* Area */}
           <div className="mb-4">
-            <label className="block text-sm font-medium text-gray-400 mb-1">AREA</label>
+            <label htmlFor="area" className="block text-sm font-medium text-gray-400 mb-1">AREA</label>
             <select
+              id="area"
               className="bg-gray-800 text-white px-3 py-2 rounded w-full"
               value={newHabit.areaId}
               onChange={(e) => setNewHabit({ ...newHabit, areaId: e.target.value })}
@@ -264,7 +257,6 @@ const AddHabitModal = ({ areas, onAddHabit, onClose }) => {
             </select>
           </div>
 
-          {/* Form Buttons */}
           <div className="flex justify-end">
             <button
               type="button"
@@ -287,5 +279,3 @@ const AddHabitModal = ({ areas, onAddHabit, onClose }) => {
 };
 
 export default AddHabitModal;
-
-
