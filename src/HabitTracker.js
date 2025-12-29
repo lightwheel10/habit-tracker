@@ -1,11 +1,11 @@
 import React, { useState, useEffect, useCallback, useMemo } from 'react';
 import Sidebar from './components/Sidebar';
-import Header from './components/habits/Header';
-import HabitList from './components/habits/HabitList';
+import Header from './components/Header';
+import HabitList from './components/HabitList';
 import RightPanel from './components/RightPanel';
-import LogoutConfirmationModal from './components/LogoutConfirmationModal';
+import LogoutConfirmationModal from './LogoutConfirmationModal';
 import LoginForm from './components/Login';
-import AddHabitModal from './components/habits/AddHabitModal';
+import AddHabitModal from './components/AddHabitModal';
 import {
   fetchHabits,
   createHabit,

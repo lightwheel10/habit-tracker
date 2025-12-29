@@ -8,10 +8,11 @@ const PORT = process.env.PORT || 5000;
 
 // Middleware
 const allowedOrigins = [
-  'https://66b4fb6ee5a4300009983f36--trackhabitseasy.netlify.app', // Remove trailing slash
+  'http://localhost:3000',
+  'http://127.0.0.1:3000',
+  'https://66b4fb6ee5a4300009983f36--trackhabitseasy.netlify.app',
   'https://trackhabitseasy.netlify.app',
-  'https://main--trackhabitseasy.netlify.app', // Add this line
-  // Add any other relevant URLs here
+  'https://main--trackhabitseasy.netlify.app',
 ];
 
 app.use(cors({
@@ -29,7 +30,13 @@ app.use(cors({
 app.use(express.json());
 
 // MongoDB connection
-mongoose.connect(process.env.MONGODB_URI, { useNewUrlParser: true, useUnifiedTopology: true, useFindAndModify: false })
+const mongoUri = process.env.MONGODB_URI;
+if (!mongoUri) {
+  console.error('MONGODB_URI environment variable is not set');
+  process.exit(1);
+}
+
+mongoose.connect(mongoUri)
   .then(() => console.log('MongoDB connected'))
   .catch(err => console.log('Error connecting to MongoDB:', err));
 

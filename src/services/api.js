@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-const API_URL = 'https://us-central1-habit-tracker-7df86.cloudfunctions.net/api';
+const API_URL = process.env.REACT_APP_API_URL || 'https://us-central1-habit-tracker-7df86.cloudfunctions.net/api';
 
 // Axios instance
 const api = axios.create({
@@ -157,22 +157,49 @@ export const deleteArea = async (areaId) => {
   }
 };
 
+// Login function
+export const login = async (credentials) => {
+  try {
+    console.log('Logging in with credentials:', { email: credentials.email });
+    const response = await api.post('/auth/login', credentials);
+    const { accessToken, refreshToken } = response.data;
+
+    if (accessToken && refreshToken) {
+      localStorage.setItem('token', accessToken);
+      localStorage.setItem('refreshToken', refreshToken);
+      api.defaults.headers.common['Authorization'] = `Bearer ${accessToken}`;
+      console.log('Login successful');
+    }
+
+    return response.data;
+  } catch (error) {
+    console.error('Error during login:', error.response ? error.response.data : error.message);
+    throw error;
+  }
+};
+
+// Check if user is logged in
+export const isLoggedIn = () => {
+  const token = localStorage.getItem('token');
+  return !!token;
+};
+
 // Logout function
 export const logout = async () => {
   console.log("Logout function in api.js called");
   try {
     // Perform any server-side logout if necessary
     // await api.post('/auth/logout');
-    
+
     // Clear local storage
     localStorage.removeItem('token');
     localStorage.removeItem('refreshToken');
     localStorage.removeItem('habits');
     localStorage.removeItem('areas');
-    
+
     // Clear the Authorization header
     delete api.defaults.headers.common['Authorization'];
-    
+
     console.log('Logged out successfully');
   } catch (error) {
     console.error('Error during logout:', error);
